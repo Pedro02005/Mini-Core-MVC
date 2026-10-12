@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
+const fechaLocal = (fecha) => `${fecha.getFullYear()}-${String(fecha.getMonth() + 1).padStart(2, '0')}-${String(fecha.getDate()).padStart(2, '0')}`
+
 function App() {
   const [pagina, setPagina] = useState('ventas')
   const [vendedores, setVendedores] = useState([])
@@ -19,8 +21,8 @@ function App() {
   })
 
   const [fechas, setFechas] = useState({
-    inicio: '',
-    fin: ''
+    inicio: fechaLocal(new Date(new Date().getFullYear(), new Date().getMonth() - 5, 1)),
+    fin: fechaLocal(new Date())
   })
 
   // Formatear valores
